@@ -3059,6 +3059,7 @@ public final class Settings {
          */
         public static final String PIE_SNAP_COLOR = "pie_snap_color";
 
+
         /**
          * Pie text color
          * @hide
@@ -3474,7 +3475,20 @@ public final class Settings {
         */
         public static final String STATUSBAR_BATTERY_ICON = "statusbar_battery_icon";
 
+	 /**
+         * Whether to show the network status in the status bar
+         * @hide
+         */
         
+	public static final String STATUS_BAR_NETWORK_STATS = "status_bar_network_stats";
+        
+	/**
+         * Frequency at which stats are updated, in milliseconds
+         * @hide
+         */
+        
+	public static final String STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL = "status_bar_network_stats_update_frequency";
+    
         /**
          * Whether or not to use the app sidebar
          *
