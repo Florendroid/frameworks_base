@@ -20,6 +20,8 @@
     <!-- Name of the status bar as seen in the applications info settings page. [CHAR LIMIT=12] -->
     <string name="app_label">System UI</string>
 
+    <string name="screenshot_toast">Screenshot in %1$d seconds</string>
+
     <!-- The text for the button in the notification window-shade that clears
          all of the currently visible notifications. [CHAR LIMIT=10]-->
     <string name="status_bar_clear_all_button">Clear</string>
@@ -528,6 +530,13 @@
      
     <!-- Title shown in recents popup for showing app in floating mode -->
     <string name="status_bar_recent_floating_item_title">Floating mode</string>
+    
+
+    <string name="quick_settings_screenshot_label">Screenshot</string>
+
+    <!-- HALO tile -->
+    <string name="quick_settings_disabled">Disabled</string>
+    <string name="quick_settings_enabled">Enabled</string>
 
     <!-- Halo -->
     <string name="halo_dismiss">Dismiss notification</string>

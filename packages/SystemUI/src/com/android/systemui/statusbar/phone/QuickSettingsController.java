@@ -41,7 +41,6 @@ import com.android.systemui.quicksettings.QuickSettingsTile;
 import com.android.systemui.quicksettings.InputMethodTile;
 import com.android.systemui.quicksettings.CameraTile;
 
-
 import dalvik.system.DexClassLoader;
 import android.content.SharedPreferences;
 import java.util.Map;
@@ -100,7 +99,9 @@ public class QuickSettingsController {
     public static final String TILE_WIFI = "toggleWifi";
     public static final String TILE_WIFIAP = "toggleWifiAp";
     public static final String TILE_WIFIDISPLAY = "toggleWifiDisplay";
-  	
+    public static final String TILE_SCREENSHOT = "toggleScreenShot";
+    public static final String TILE_HALO = "toggleHalo"; 
+ 
     // not yet supported
     public static final String TILE_WIMAX = "toggleWimax";
 
@@ -142,6 +143,8 @@ public class QuickSettingsController {
         TILES_CLASSES.put(TILE_WIFI, "com.android.systemui.quicksettings.WiFiTile");
         TILES_CLASSES.put(TILE_WIFIAP, "com.android.systemui.quicksettings.WifiAPTile");
         TILES_CLASSES.put(TILE_WIFIDISPLAY, "com.android.systemui.quicksettings.WiFiDisplayTile");
+	TILES_CLASSES.put(TILE_SCREENSHOT, "com.android.systemui.quicksettings.ScreenshotTile");
+        TILES_CLASSES.put(TILE_HALO, "com.android.systemui.quicksettings.HaloTile");
 	}
 
     private static final String TILE_DELIMITER = "|";
@@ -267,6 +270,10 @@ public class QuickSettingsController {
             } else if (tileName.equals(TILE_BATTERY)) {
                 qs = createTile(true, tileName, instanceID, inflater,
                     mStatusBarService.mBatteryController);
+	    } else if (tileName.equals(TILE_SCREENSHOT)) {
+                qs = new ScreenshotTile(mContext, this);
+            } else if (tileName.equals(TILE_HALO)) {
+                qs = new HaloTile(mContext, this, mHandler);
             } else {
                 qs = createTile(true, tileName, instanceID, inflater, null);
             }
