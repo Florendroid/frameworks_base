@@ -2821,6 +2821,8 @@ public final class Settings {
          */
         public static final String USE_WEATHER = "use_weather";
 
+	public static final String SHOW_TIME = "show_time";
+
         /**
          * @hide
          */

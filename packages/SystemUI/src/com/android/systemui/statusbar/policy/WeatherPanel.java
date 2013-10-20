@@ -22,6 +22,7 @@ public class WeatherPanel extends FrameLayout {
 
     private boolean mAttached;
 
+    public static final String EXTRA_LAST_UPDATE = "datestamp";
     public static final String EXTRA_CITY = "city";
     public static final String EXTRA_CONDITION = "condition";
     public static final String EXTRA_CONDITION_CODE = "condition_code";
@@ -38,14 +39,14 @@ public class WeatherPanel extends FrameLayout {
     private TextView mCurrentTemp;
     private TextView mCity;
     private TextView mHumidity;
-    private TextView mWinds;
+    private TextView mDate;
     private TextView mCondition;
     private ImageView mConditionImage;
     private Context mContext;
     private String mCondition_code = "";
     private ContentObserver mContentObserver;
     private ContentResolver mContentResolver;
-    private boolean mShowLocation = true;
+    private boolean mShowTime;
 
     BroadcastReceiver weatherReceiver = new BroadcastReceiver() {
         @Override
@@ -55,17 +56,18 @@ public class WeatherPanel extends FrameLayout {
     };
 
     public void updateSettings() {
-        updateCityVisibility();
+        updateTimeVisibility();
     }
 
-    private void updateCityVisibility() {
-        if (mCity == null)
+    private void updateTimeVisibility() {
+        if (mDate == null)
             return;
-
-        if (mShowLocation) {
-            mCity.setVisibility(View.VISIBLE);
+	mShowTime = (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SHOW_TIME, 1) == 1);
+        if (mShowTime) {
+            mDate.setVisibility(View.VISIBLE);
         } else {
-            mCity.setVisibility(View.GONE);
+            mDate.setVisibility(View.GONE);
         }
     }
 
@@ -81,8 +83,8 @@ public class WeatherPanel extends FrameLayout {
             mCity.setText(intent.getCharSequenceExtra(EXTRA_CITY));
         if (mHumidity != null)
             mHumidity.setText(intent.getCharSequenceExtra(EXTRA_HUMIDITY));
-        if (mWinds != null)
-            mWinds.setText(intent.getCharSequenceExtra(EXTRA_WIND));
+        if (mDate != null)
+            mDate.setText(intent.getCharSequenceExtra(EXTRA_LAST_UPDATE));
         if (mCondition != null)
             mCondition.setText(intent.getCharSequenceExtra(EXTRA_CONDITION));
         if (mConditionImage != null) {
@@ -93,7 +95,7 @@ public class WeatherPanel extends FrameLayout {
             }
             mConditionImage.setImageLevel(level);
         }
-        updateCityVisibility();
+        updateTimeVisibility();
     }
 
     public void setTextColor(int color)
@@ -108,8 +110,8 @@ public class WeatherPanel extends FrameLayout {
             mCity.setTextColor(color);
         if (mHumidity != null)
             mHumidity.setTextColor(color);
-        if (mWinds != null)
-            mWinds.setTextColor(color);
+        if (mDate != null)
+            mDate.setTextColor(color);
         if (mCondition != null)
             mCondition.setTextColor(color);
         if (mSlash != null)
@@ -149,7 +151,7 @@ public class WeatherPanel extends FrameLayout {
         mCurrentTemp = (TextView) this.findViewById(R.id.current_temp);
         mCity = (TextView) this.findViewById(R.id.city);
         mHumidity = (TextView) this.findViewById(R.id.humidity);
-        mWinds = (TextView) this.findViewById(R.id.winds);
+        mDate = (TextView) this.findViewById(R.id.date);
         mCondition = (TextView) this.findViewById(R.id.condition);
         mConditionImage = (ImageView) this.findViewById(R.id.condition_image);
         mSlash = (TextView) this.findViewById(R.id.weatherpanel_slash);

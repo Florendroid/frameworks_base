@@ -17,6 +17,7 @@ public class WeatherText extends TextView {
 
     private boolean mAttached;
 
+    public static final String EXTRA_LAST_UPDATE = "datestamp";
     public static final String EXTRA_CITY = "city";
     public static final String EXTRA_CONDITION = "condition";
     public static final String EXTRA_FORECAST_DATE = "forecast_date";
@@ -63,7 +64,7 @@ public class WeatherText extends TextView {
     }
 
     public void updateWeather(Intent intent) {
-        String wText = (mShowLocation) ? (intent.getCharSequenceExtra(EXTRA_CITY) + ", " + intent.getCharSequenceExtra(EXTRA_TEMP) + ", "
+        String wText = (mShowLocation) ? (intent.getCharSequenceExtra(EXTRA_CITY) + ", " + intent.getCharSequenceExtra(EXTRA_LAST_UPDATE) +"," + intent.getCharSequenceExtra(EXTRA_TEMP) + ", "
                 + intent.getCharSequenceExtra(EXTRA_CONDITION)) : (intent.getCharSequenceExtra(EXTRA_TEMP) + ", "
                         + intent.getCharSequenceExtra(EXTRA_CONDITION));
         this.setText(wText);

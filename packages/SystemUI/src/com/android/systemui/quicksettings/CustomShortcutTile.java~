@@ -133,7 +133,7 @@ public class CustomShortcutTile extends QuickSettingsTile
         }
     }
 
-     @Override
+    @Override
     void updateQuickSettings() {
         int shortCutType = 0;
         if (mCustomIcon != null && mCustomIcon.endsWith(".png")) {
@@ -182,7 +182,7 @@ public class CustomShortcutTile extends QuickSettingsTile
         if (shortCutType) {
             mTileLayout = R.layout.quick_settings_tile_customshortcut;
         } else {
-            mTileLayout = R.layout.quick_settings_tile_generic;
+            mTileLayout = R.layout.quick_settings_tile_basic;
         }
         mTile.setContent(mTileLayout, mInflater);
     }
