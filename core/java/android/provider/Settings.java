@@ -3977,8 +3977,6 @@ public final class Settings {
          */
         public static final String POWER_MENU_SCREENSHOT_ENABLED = "power_menu_screenshot_enabled";
 
-	public static final String SCREENSHOT_TOGGLE_DELAY = "screenshot_toggle_delay";
-
         /**
          * Whether power menu expanded desktop is enabled
          * @hide
