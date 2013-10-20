@@ -50,11 +50,9 @@ public class ScreenshotTile extends QuickSettingsTile {
             @Override
             public boolean onLongClick(View v) {
                 qsc.mBar.collapseAllPanels(true);
-                 int delay = Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.SCREENSHOT_TOGGLE_DELAY, 5000);
                 final Toast toast = Toast.makeText(mContext,
                         String.format(mContext.getResources().getString(R.string.screenshot_toast),
-                                delay / 1000), Toast.LENGTH_SHORT);
+                                5), Toast.LENGTH_SHORT);
                 toast.show();
                 // toast duration is not customizable, hack to show it only for 1 sec
                 mHandler.postDelayed(new Runnable() {
@@ -62,11 +60,11 @@ public class ScreenshotTile extends QuickSettingsTile {
                         toast.cancel();
                     }
                 }, 1000);
-                mHandler.postDelayed(mRunnable, delay);
+                mHandler.postDelayed(mRunnable, 5000);
                 return true;
             }
         };
-    } 
+    }
 
     @Override
     void onPostCreate() {
