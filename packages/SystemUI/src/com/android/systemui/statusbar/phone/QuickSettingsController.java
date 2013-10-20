@@ -267,14 +267,7 @@ public class QuickSettingsController {
             } else if (tileName.equals(TILE_BATTERY)) {
                 qs = createTile(true, tileName, instanceID, inflater,
                     mStatusBarService.mBatteryController);
-
-	    } else if (tileName.equals(TILE_SCREENSHOT)) {
-                qs = createTile(true, tileName, instanceID, inflater,
-                    null);
-            } else if (tileName.equals(TILE_HALO)) {
-                qs = createTile(true, tileName, instanceID, inflater,
-                    null);
-           } else {
+            } else {
                 qs = createTile(true, tileName, instanceID, inflater, null);
             }
             if (tileName.equals(TILE_IME)) this.IMETile = (InputMethodTile) qs;
@@ -286,6 +279,8 @@ public class QuickSettingsController {
         Log.e("\r\n\r\n"+TAG, "All tiles sucessfully created");
         updateTilesContent();
     }
+
+
 
     private void cleanTilesContent() {
         SharedPreferences allPrefs = mContext.getSharedPreferences("QuickSettingsTilesContent", 0);
