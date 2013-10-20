@@ -271,9 +271,11 @@ public class QuickSettingsController {
                 qs = createTile(true, tileName, instanceID, inflater,
                     mStatusBarService.mBatteryController);
 	    } else if (tileName.equals(TILE_SCREENSHOT)) {
-                qs = new ScreenshotTile(mContext, this);
+                qs = createTile(true, tileName, instanceID, inflater,
+                    null);
             } else if (tileName.equals(TILE_HALO)) {
-                qs = new HaloTile(mContext, this, mHandler);
+                qs = createTile(true, tileName, instanceID, inflater,
+                    null);
             } else {
                 qs = createTile(true, tileName, instanceID, inflater, null);
             }
