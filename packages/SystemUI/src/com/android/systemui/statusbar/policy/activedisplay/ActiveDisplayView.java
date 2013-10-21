@@ -678,19 +678,19 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void handleDismissNotification() {
-        if (mNotification != null && mNotification.isClearable()) {
-           try {
-                mNM.cancelNotificationFromListener(mNotificationListener,
-                        mNotification.getPackageName(), mNotification.getTag(),
-                        mNotification.getId());
-            } catch (RemoteException e) {
-            }
-            mNotification = getNextAvailableNotification();
-            if (mNotification != null) {
-                setActiveNotification(mNotification, true);
-                userActivity();
-                return;
-            }
+
+	try {
+            mNM.cancelNotificationFromListener(mNotificationListener,
+                    mNotification.getPackageName(), mNotification.getTag(),
+                    mNotification.getId());
+        } catch (RemoteException e) {
+        } catch (NullPointerException npe) {
+        }
+        mNotification = getNextAvailableNotification();
+        if (mNotification != null) {
+            setActiveNotification(mNotification, true);
+            userActivity();
+            return;
         }
 
         // no other notifications to display so turn screen off
