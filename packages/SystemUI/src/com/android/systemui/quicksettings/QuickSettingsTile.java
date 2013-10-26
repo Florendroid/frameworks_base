@@ -165,16 +165,16 @@ public class QuickSettingsTile implements OnClickListener {
         mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
         mStatusbarService.animateCollapsePanels();
     }
- @Override
+    @Override
     public void onClick(View v) {
- if (mOnClick != null) {
+ 	if (mOnClick != null) {
         mOnClick.onClick(v);
         ContentResolver resolver = mContext.getContentResolver();
         boolean shouldCollapse = Settings.System.getInt(resolver, Settings.System.QS_COLLAPSE_PANEL, 0) == 1;
         if (shouldCollapse) {
             mQsc.mBar.collapseAllPanels(true);
         }
-if (isEnabled()) {
+	if (isEnabled()) {
             doFlip();
         } 
     }}
@@ -187,7 +187,7 @@ if (isEnabled()) {
         return (Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.QUICK_SETTINGS_TILES_FLIP, 1) == 1);
     } 
-public void flipTile(int delay){
+    public void flipTile(int delay){
         final AnimatorSet anim = (AnimatorSet) AnimatorInflater.loadAnimator(
                 mContext, R.anim.flip_right);
         anim.setTarget(mTile);
