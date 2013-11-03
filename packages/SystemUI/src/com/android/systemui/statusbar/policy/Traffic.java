@@ -138,7 +138,7 @@ int mTrafficColor;
 
     public void update() {
         mTrafficHandler.removeCallbacks(mRunnable);
-        mTrafficHandler.postDelayed(mRunnable, 3000);
+        mTrafficHandler.postDelayed(mRunnable, 500);
     }
 
     Runnable mRunnable = new Runnable() {
