@@ -90,7 +90,6 @@ public class CircleBattery extends ImageView {
     private int mCircleTextChargingColor;
     private int mCircleAnimSpeed;
 
-
     // runnable to invalidate view via mHandler.postDelayed() call
     private final Runnable mInvalidate = new Runnable() {
         public void run() {
@@ -287,7 +286,9 @@ public class CircleBattery extends ImageView {
                 mPaintFont.setColor(mPaintRed.getColor());
             } else if (mIsCharging) {
                 mPaintFont.setColor(mCircleTextChargingColor);
-            } 
+            } else {
+                mPaintFont.setColor(mCircleTextColor);
+            }
             canvas.drawText(Integer.toString(level), textX, mTextY, mPaintFont);
         }
 
@@ -339,7 +340,6 @@ public class CircleBattery extends ImageView {
                 Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR, -2));
         mCircleAnimSpeed = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED, 3));
-
 
         int defaultColor = res.getColor(R.color.holo_blue_dark);
 
@@ -395,17 +395,18 @@ public class CircleBattery extends ImageView {
         mPaintGray = new Paint(mPaintFont);
         mPaintSystem = new Paint(mPaintFont);
         mPaintRed = new Paint(mPaintFont);
-        
+
         mPaintSystem.setColor(mCircleColor);
-        mPaintGray.setColor(res.getColor(R.color.darker_gray));
         // could not find the darker definition anywhere in resources
         // do not want to use static 0x404040 color value. would break theming.
+        mPaintGray.setColor(res.getColor(R.color.darker_gray));
         mPaintRed.setColor(res.getColor(R.color.holo_red_light));
 
         // font needs some extra settings
         mPaintFont.setTextAlign(Align.CENTER);
         mPaintFont.setFakeBoldText(true);
     }
+
 
     /***
      * updates the animation counter
@@ -492,3 +493,4 @@ public class CircleBattery extends ImageView {
         }*/
     }
 }
+
