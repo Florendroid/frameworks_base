@@ -2511,6 +2511,11 @@ public final class Settings {
          */
         public static final String BATTERY_LIGHT_FULL_COLOR = "battery_light_full_color";
 
+        /** Sprint MWI Quirk: Show message wait indicator notifications
+         * @hide
+         */
+        public static final String ENABLE_MWI_NOTIFICATION = "enable_mwi_notification";
+
         /**
          * Show pointer location on screen?
          * 0 = no
@@ -3238,6 +3243,12 @@ public final class Settings {
         public static final String HALO_UNLOCK_PING = "halo_unlock_ping";
         
 	/**
+         * Whether to remove the sound from phone ringing during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_RINGER = "quiet_hours_ringer";
+
+        /**
          * Whether to remove the sound from outgoing notifications during quiet hours.
          * @hide
          */
