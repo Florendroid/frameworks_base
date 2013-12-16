@@ -437,7 +437,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                     Settings.System.QUICK_SETTINGS_TILES),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QUICK_TILES_PER_ROW),
+           	   Settings.System.QUICK_SETTINGS_DYNAMIC_TILES),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                   Settings.System.QUICK_TILES_PER_ROW),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE),
@@ -463,6 +466,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
             super.onChange(selfChange, uri);
             if (uri.equals(Settings.System.getUriFor(
                     Settings.System.QUICK_SETTINGS_TILES))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.QUICK_SETTINGS_DYNAMIC_TILES))
                 || uri.equals(Settings.System.getUriFor(
                     Settings.System.QUICK_TILES_PER_ROW))
                 || uri.equals(Settings.System.getUriFor(
@@ -2899,6 +2904,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         }
 
         public void tickerHalting() {
+
              if (!mHaloActive) {
                 mStatusBarContents.setVisibility(View.VISIBLE);
                 mCenterClockLayout.setVisibility(View.VISIBLE);
@@ -2907,6 +2913,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                 mCenterClockLayout.startAnimation(loadAnim(com.android.internal.R.anim.fade_in, null));
                 // we do not animate the ticker away at this point, just get rid of it (b/6992707)
             }
+            if (mStatusBarContents.getVisibility() != View.VISIBLE) {
+                mStatusBarContents.setVisibility(View.VISIBLE);
+                mStatusBarContents
+                        .startAnimation(loadAnim(com.android.internal.R.anim.fade_in, null));
+            }
+            if (mCenterClockLayout.getVisibility() != View.VISIBLE) {
+                mCenterClockLayout.setVisibility(View.VISIBLE);
+                mCenterClockLayout
+                        .startAnimation(loadAnim(com.android.internal.R.anim.fade_in, null));
+            }
+            mTickerView.setVisibility(View.GONE);
+            // we do not animate the ticker away at this point, just get rid of it (b/6992707)
         }
     }
 

@@ -2897,6 +2897,12 @@ public final class Settings {
         public static final String QUICK_SETTINGS_TILES = "quick_settings_tiles";
 
         /**
+         * QuickSettings dynamic tiles configuration
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_DYNAMIC_TILES = "quick_settings_dynamic_tiles";
+
+        /**
          * Number of QuickSettings tiles per row
          * @hide
          */
@@ -3243,6 +3249,12 @@ public final class Settings {
         public static final String HALO_UNLOCK_PING = "halo_unlock_ping";
         
 	/**
+         * Whether to remove the sound from phone ringing during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_RINGER = "quiet_hours_ringer";
+
+        /**
          * Whether to remove the sound from phone ringing during quiet hours.
          * @hide
          */
